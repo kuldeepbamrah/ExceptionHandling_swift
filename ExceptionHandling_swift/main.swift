@@ -8,7 +8,10 @@
 
 import Foundation
 do{
-    _ = try Faculty(facultyId: 001, falcultyName: "Kuldeepppp", salary: 100)
+    var f =  try Faculty(facultyId: 001, falcultyName: "Kuldeepppp", salary: 10000)
+    print("Object created")
+   //try f.setSalary(salary: 900)
+    try f.setFacultyName(facultyName: "Kuldeep")
     
 }catch(FacultyError.invalidEmployeeName( let fname))
 {
@@ -19,4 +22,8 @@ do{
 }catch(FacultyError.invalidSalary(let fsalary))
 {
     print("Salary assigned for the faculty is ; \(fsalary), make sure it is more than 1000")
+}
+catch(FacultyError.invalidSalarywithmessage(let message))
+{
+    print(message)
 }

@@ -13,6 +13,7 @@ enum FacultyError : Error
     case invalidSalary(facultySalary : Double)
     case invalidEmployeeId(employeeId : Int)
     case invalidEmployeeName(employeeName : String)
+    case invalidSalarywithmessage(messaege : String)
 }
 
 class Faculty
@@ -40,4 +41,33 @@ class Faculty
         self.salary = salary
     }
     
+    
+    func setSalary(salary : Double) throws
+    {
+        if salary < 1000
+        {
+            //throw FacultyError.invalidSalary(facultySalary: salary)
+            throw FacultyError.invalidSalarywithmessage(messaege : "Invalid Salary Input : \(salary)")
+        }
+    }
+    
+    func setFacultyName(facultyName : String)
+    {
+        do {
+            if facultyName.count  < 10
+            {
+                throw FacultyError.invalidEmployeeName(employeeName: facultyName)
+            }
+            self.facultyName = facultyName
+            print("name changed")
+        }catch FacultyError.invalidEmployeeName(let facultyName){
+            print("Name should be greater than 10 charachter")
+        }catch
+        {
+            print(error.localizedDescription)
+        }
+        
+        
+        
+    }
 }
